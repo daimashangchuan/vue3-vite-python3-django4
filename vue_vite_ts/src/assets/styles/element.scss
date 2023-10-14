@@ -1,0 +1,104 @@
+// 自定义全局颜色
+// 背景
+$bgfff: #fff;
+$bginit: #fa8c16;
+$bgfae: #faeee2;
+$bgc7c: #c7c7c7;
+// 边框
+$bordc7c: #c7c7c7;
+// 字体
+$colfff: #fff;
+$colinit: #fa8c16;
+$col000: #000;
+$col333: #333;
+
+
+//  配置 element-plus
+@forward 'element-plus/theme-chalk/src/common/var.scss' with ($colors: ('primary': ('base': $bginit, )));
+
+
+.el-form {
+
+  // 修改 element-plus 组件样式 form表单
+  .el-form-item {
+    margin-bottom: 30px;
+  }
+
+  .el-select,
+  .el-input-number,
+  .el-cascader {
+    width: 100%;
+  }
+}
+
+
+
+
+// 线
+.el-divider--horizontal {
+  margin: 20px 0;
+}
+
+// 设置弹框被覆盖问题
+.el-overlay.is-message-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+// 去处 el-dropdown hover边框问题
+:focus {
+  outline: 0;
+}
+
+// 优化鼠标样式 
+.el-breadcrumb__item {
+  cursor: pointer;
+}
+
+// 初始左排列
+%elastic-box {
+  display: flex;
+}
+
+// 水平垂直居中
+.flex-content-content {
+  @extend %elastic-box;
+  justify-content: center;
+  align-items: center;
+}
+
+// 俩边分隔排列垂直居中
+.flex-between-center {
+  @extend %elastic-box;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 俩边留白分隔排列垂直居中
+.flex-around-content {
+  @extend %elastic-box;
+  justify-content: space-around;
+  align-items: center;
+}
+
+// 垂直居中
+.flex-default-center {
+  @extend %elastic-box;
+  align-items: center;
+}
+
+// 换行
+.flex-wrap {
+  @extend %elastic-box;
+  flex-wrap: wrap;
+}
+
+// 垂直布局
+.flex-direction {
+  @extend %elastic-box;
+  flex-direction: column;
+}

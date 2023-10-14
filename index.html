@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    #video {
+      position: absolute;
+      top: -10000px;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <video id="video" width="640" height="480" autoplay></video>
+  <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+  
+  <button id="snap">助力</button>
+
+  <script>
+    let isUserMedia = false;
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const snapBtn = document.getElementById('snap');
+    navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+      video.srcObject = stream;
+      isUserMedia = true;
+    }).catch(err => {
+      isUserMedia = false;
+    });
+
+
+    snapBtn.addEventListener('click', async () => {
+      if(isUserMedia) {
+        const image = await onDrawImage()
+        onFetch('upload', image)
+      }
+    });
+    
+
+    function onDrawImage() {
+      const context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, 640, 480);
+      const dataURL = canvas.toDataURL();
+      return dataURL
+    }
+
+
+    function onFetch (url, image) {
+      console.log('url', url);
+      console.log('image', image);
+      // fetch(url, {
+      //   method: 'POST',
+      //   body: image,
+      //   headers: {
+      //     'Content-Type': 'application/octet-stream',
+      //   },
+      // })
+      // .then(response => {
+      //   // 处理上传成功后的逻辑
+      // })
+      // .catch(error => {
+      //   // 处理上传失败后的逻辑
+      // });
+    }
+
+  </script>
+
+</body>
+</html>
